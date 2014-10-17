@@ -1,0 +1,63 @@
+=============================
+Monitoring Domogik using SNMP
+=============================
+
+Why?
+====
+
+Home automation systems need to be reliable. So it's important to monitor
+them. SNMP is a well known service for system monitoring. It's simple to
+implement and need few ressources. But keep in mind, that is will have an
+impact on your computer ressources, specially on a small one ...
+
+The perl agent uses cache to improve performance. It's possible to tune
+cache performance using the config file.
+It can get tatistics from a file, a python script and a rest connection.
+Perl support ZMQ so it will possible to use it too.
+
+Theses scripts are extensions to the snmpd agent.
+
+Install snmpd
+=============
+
+.. code-block:: bash
+
+    sudo apt-get install snmpd snmp-mibs-downloader
+
+Edit the configuration file :
+
+.. code-block:: bash
+
+    sudoedit /etc/snmp/snmpd.conf
+
+Change the address which snmpd must listen to :
+
+.. code-block:: bash
+
+    agentAddress  udp:192.168.xxx.yyy:161
+
+Enable the public community to see all parameters. This could be consider
+as a security hole. For advanced security, look at the SNMP V3 specifications :
+
+.. code-block:: bash
+
+    # rocommunity public  default    -V systemonly
+    rocommunity public  default
+
+There is a bug in the current package in Ubuntu and Debian.
+
+(To de confirmed) So you must copy missing MIBS from snmp sources :
+
+.. code-block:: bash
+
+    sudo mkdir /usr/share/mibs/site
+    sudo cp * /usr/share/mibs/site
+
+
+Install domogik agent
+=====================
+
+There is 2 agents availables : one in bash and a new one in perl.
+
+The bash agent is no more maintained, so please use the new perl agent.
+Look at the corresponding documentation.
