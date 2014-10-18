@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y python2.7 pytho
 
 RUN adduser --disabled-password --disabled-login domogik
 ADD domogik-0.3.1/ /home/domogik/
+RUN chmod +x /home/domogik/install.sh
 RUN /home/domogik/install.sh --command-line --user domogik \
   --database_type mysql --database_host localhost --database_name domogik --database_user domogik --database_password domopass
 
