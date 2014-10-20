@@ -18,7 +18,7 @@ RUN git clone git://github.com/domogik/domogik.git /domogik
 RUN ./install.py --command-line --user domogik \
   --database_type mysql --database_host localhost --database_name domogik --database_user domogik --database_password domopass
 
-RUN rm /var/log/domogik/*
+#RUN rm /var/log/domogik/*
 ADD domogik-init.sh /domogik-init.sh
 
 CMD ["/s"]
