@@ -21,7 +21,7 @@ RUN ./install.py --command-line --user domogik \
 #RUN rm /var/log/domogik/*
 ADD domogik-init.sh /domogik-init.sh
 
-CMD ["/s"]
+CMD ["/domogik-init.sh"]
 
 #VOLUME ["/data"]
 EXPOSE 3865 40405 40406 40410 40411 40412
